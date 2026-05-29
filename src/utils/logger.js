@@ -8,6 +8,8 @@ class Logger {
   }
 
   ensureLogDirectory() {
+    if (process.env.NODE_ENV === 'production') return;
+    
     if (!fs.existsSync(this.logDir)) {
       fs.mkdirSync(this.logDir, { recursive: true });
     }
