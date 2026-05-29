@@ -20,6 +20,8 @@ class Logger {
   }
 
   writeToFile(level, message, meta = {}) {
+    if (process.env.NODE_ENV === 'production') return;
+
     const logFile = path.join(this.logDir, `${level.toLowerCase()}.log`);
     const formattedMessage = this.formatMessage(level, message, meta);
     
